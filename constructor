@@ -1,0 +1,21 @@
+//Constructor
+
+* its used to assign the values and instantiating an object.
+*In Python the __init__() method is called the constructor and is always called when an object is created.
+
+//two types of constructor.
+*defalut constructor.
+*parameterized constructor.
+
+//syntax
+ def__init__(self):
+     //body of the constructor.
+     
+ //defalut constructor:
+ 
+ The default constructor is a simple constructor which doesn’t accept any arguments.
+ 
+ //parameterized constructor
+ 
+ the parameterized constructor takes its first argument as a reference to the instance being constructed known as self
+ and the rest of the arguments are provided by the programmer.
