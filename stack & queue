@@ -1,0 +1,51 @@
+//stack
+
+A stack is a linear data structure in which we can only access
+or remove the element which was added last to it.
+In real life, we can take the example of a stack of plates 
+where we can only take out the uppermost plate because it was added last.
+
+*Insert an element(Push an element)
+*Remove an element (Pop an element)
+*Check if the stack is empty
+*Check the topmost element in the stack
+*Check the size of the stack
+
+//queue.
+
+A queue is a linear type of data structure used to store the data in a sequentially. 
+The concept of queue is based on the FIFO, which means "First in First Out". It is also known as "first come first severed".
+The queue has the two ends front and rear.
+The next element is inserted from the rear end and removed from the front end.
+
+//We can perform the following operations in the Queue.
+
+*Enqueue - The enqueue is an operation where we add items to the queue.
+If the queue is full, it is a condition of the Queue 
+The time complexity of enqueue is O(1).
+
+*Dequeue - The dequeue is an operation where we remove an element from the queue.
+An element is removed in the same order as it is inserted.
+If the queue is empty, it is a condition of the Queue Underflow. 
+The time complexity of dequeue is O(1).
+
+*Front - An element is inserted in the front end. The time complexity of front is O(1).
+
+*Rear - An element is removed from the rear end.. The time complexity of the rear is O(1).
+
+//functions:
+
+put(item) - This function is used to insert element to the queue.
+get() - This function is used to extract the element from the queue.
+empty() - This function is used to check whether a queue is empty or not. It returns true if queue is empty.
+qsize - This function returns the length of the queue.
+full() - If the queue is full returns true; otherwise false.
+
+//inbulit function
+*pop()
+*append()
+*insert()
+*push()
+
+
+
