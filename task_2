@@ -1,0 +1,24 @@
+//polymorphism
+
+The word "polymorphism" means "many forms", and in programming 
+it refers to methods/functions/operators with the same name that can be executed on many objects or classes.
+
+polymorphism is taken from the Greek words Poly (many) and morphism (forms). 
+It means that the same function name can be used for different types. 
+This makes programming more intuitive and easier.
+
+//Encapsulation
+
+Encapsulation is one of the fundamental concepts in OOP. 
+It describes the idea of restricting access to methods and attributes in a class. 
+This will hide the complex details from the users, and prevent data being modified by accident. 
+In Python, this is achieved by using private methods or attributes using underscore as prefix, i.e. single “_” or double “__”.
+
+describes the concept of bundling data and methods within a single unit.
+
+//data abstraction
+
+The process by which data and functions are defined in such a way that only essential details
+can be seen and unnecessary implementations are hidden is called Data Abstraction.
+
+example: tv to watch shows ,movie,etc..
