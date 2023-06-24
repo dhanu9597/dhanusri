@@ -1,0 +1,210 @@
+#booking ticket for bookmyshow
+
+users=[] 
+movielist=[[1,"Movie Name: Adipurush;","Language: Tamil,Hindi;", "Genere: Mythological;", "Rating: 7.5/10"],
+           [2,"Movie Name: Porthozhil;","Language: Tamil,English;", "Genere: Thriller;", "Rating: 9.5/10"]]
+theatrelist=[["Name: DNC;","Location: Chennai;","AC/NON AC: AC;","Parking Slot:Available"],
+                  ["Name: Dass;","Location: Coimbatore;","AC/NON AC: Non AC;","Parking Slot:Available"],
+                  ["Name: Muthu;","Location: Chennai;","AC/NON AC: Non AC;","Parking Slot: Not Available"],
+                  ["Name: Karthikeyan;","Location: Trichy;","AC/NON AC: AC&Non AC;","Parking Slot:Available"],
+                  ["Name: Rajeshwari;","Location: Trichy;","AC/NON AC: AC&Non AC;","Parking Slot:Available"],
+                 ]
+selected_movie=None
+available_movies=[]
+
+def print_theatre_details(theatrelist,n):
+    print("THEATRE DETAILS\n------------------------------------")
+    for details in theatrelist[n]:
+            print(details)
+    print("\nAVAILABLE MOVIES\n---------------------------")
+    
+def print_theatre(theatre):
+    if(theatre=="DNC"):
+        print_theatre_details(theatrelist,0)
+        printer(movielist,2)
+    elif(theatre=="Dass"):
+        print_theatre_details(theatrelist,1)
+        printer(movielist,1)
+    elif(theatre=="Muthu"):
+        print_theatre_details(theatrelist,2)
+        printer(movielist,1)
+    elif(theatre=="Karthikeyan"):
+        print_theatre_details(theatrelist,3)
+        movielist.reverse()
+        printer(movielist,2)
+    elif(theatre=="Rajeshwari"):
+        print_theatre_details(theatrelist,4)
+        movielist.reverse()
+        printer(movielist,1)    
+
+
+
+def printer(movielist,n):
+    count=0
+    for movies in movielist:
+        if(count<n):
+          for details in movies:
+              print(details)
+          count+=1    
+          print("\n-------------------------")   
+          available_movies.append(movies)
+          
+class bookmyshow:
+    def __init__(self,id:int,name:str,email:str,password:str,phno:int):
+        self.userid=id
+        self.username=name
+        self.email=email
+        self.password=password
+        self.phno=phno
+        
+
+
+    def register(self):
+        userid = int(input("Enter your userid:"))
+        name = str(input("Enter your name:"))
+        email = str(input("Enter your emailid:"))
+        password = str(input("Enter your password:"))
+        phno = int(input("Enter your mobile number:"))
+        app=bookmyshow(userid,name,email,password,phno)
+        app.hardcodedata()
+
+    def hardcodedata(self):
+        users.append(self)
+        #print(users)
+        return users
+    
+    def validlogin(self,name,password):
+        for user in users:
+            if user.username==name and user.password==password:
+                return user
+            
+    def Welcome(self):
+        print("Welcome to the MovieWorld")
+
+class Movielist:
+    def __init__(self,movieid,moviename,movielang,movietime,releasedate):
+        self.movieid=movieid
+        self.moviename=moviename
+        self.language=movielang
+        self.movietime=movietime
+        self.releasedate=releasedate
+
+
+class MovieApp:
+  
+     def Menu(self):
+         
+       show = True
+       while (show):
+         print("\nMENU\n--------------------------------")
+         print("1. All Movies")
+         print("2. search location")
+         print("3. Search THEATRE")
+         print("4. Log out")
+         choice = int(input("Enter your choice:"))
+      
+         if(choice==1):
+             print("MOVIE LIST\n------------------------------")
+             printer(movielist,2)
+
+         if(choice==2):
+             print("LOCATIONS:\n------------------\nChennai\nTrichy\nCoimbatore")
+             location=str(input("Choose one location:"))
+             if(location=="Chennai"):
+                 printer(movielist,1)
+             elif(location=="Trichy"):
+                 printer(movielist,2)
+             else:
+                 movielist.reverse()
+                 printer(movielist,2)
+         
+         if(choice==3):
+             print("Search Your Theatres\n---------------------------")
+             theatre=str(input("Enter Theatre Name:"))
+             print_theatre(theatre)
+             booking_obj.BookingPage()
+
+         if(choice==4):             
+              print("Logged out Successfully")
+              break
+             
+
+class Booking:
+
+    def BookingPage(self):
+         moviechoice=int(input("Enter MovieID:"))
+         print("Amount=190/seat")
+         print("Available Timings:\n-----------------------------\n10:00AM\n02:30PM\n06:30PM\n09:30PM")
+         timechoice=str(input("Choose the timing (enter 0 to cancel ):"))
+         if(timechoice!=0):
+           booking_obj.seat_selection(moviechoice)  
+
+    def seat_selection(self,moviechoice):
+          self.moviechoice=moviechoice
+          seats=int(input("Enter No of Seats: "))
+          total_amount=seats*190
+          for movies in available_movies:
+             if(movies[0]==self.moviechoice):
+                  selected_movie=movies
+                  
+          booking_obj.payment()
+          history_choice= str(input("Do you want to see Booking History(y/n):"))
+          if(history_choice=='y'):
+             if(selected_movie==None):
+                 print("No Booking History")
+             else:
+                 for details in selected_movie:
+                      print(details)
+                      print("Total Amount:",total_amount)
+          else:
+              movieobj.Menu()   
+
+    def payment(self):
+         print("PAYMENT PAGE\n---------------------------")
+         print("1.Card\n2. UPI\n3. Cash On Delivery")
+         choice=int(input("Select Payment Method:"))
+         if(choice==1):
+             cvv=int(input("Enter CVV number:"))
+             expiry_date=str(input("Enter expiry_date(mm/yyyy) :"))
+             print("Payment Successful")
+         elif (choice==2):
+             bank_name=str(input("Enter your Bank Name:"))
+             print("OTP sent to your account")
+             confirmation=str(input("Accepted the OTP or not:(y/n):"))
+             if(confirmation=='y'):
+                 print("Payment Successful")
+             else:
+                 print("Payment Pending")
+         else:
+              print("Thanks for chose Cash On Delivery\nYour Movie is Waiting For You!!")
+           
+          
+              
+if __name__=="__main__":
+
+    print("~~WELCOME TO BOOKMYSHOW~~\n----------------------------")
+    status = str(input("\nNew User? (y/n)"))
+    
+    app=bookmyshow(1,"dhanu","dhanu@gmail.com","dhanu123",12334567821)
+    app.hardcodedata()
+    app=bookmyshow(1,"shalu","shalu123@gmail.com","shau123",675432897)
+    app.hardcodedata()
+
+    movieobj = MovieApp()
+    booking_obj=Booking()
+    if status=='y':
+        app.register()
+        print("Registered successfully")
+        movieobj.Menu() 
+    else:
+        print("LOGIN PAGE\n----------------------")
+        Name=str(input("NAME: "))
+        Password=str(input("password: "))
+        checklogin_user=app.validlogin(Name,Password)
+        if checklogin_user:
+            print("Logged in successfully")
+            app.Welcome()
+            movieobj.Menu() 
+        else:
+            print("Invalid Login\nGoto Register")
+            app.register()
